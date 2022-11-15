@@ -1,0 +1,41 @@
+---
+sidebar_position: 1
+---
+
+# Network
+
+Defines network configurations:
+
+```ts
+type Network = {
+  name: string;
+  chainId: string;
+  chainPrefix?: string;
+  rpc: string;
+  rest: string;
+  gasPrice?: string;
+  bip44?: {
+    coinType: number;
+  };
+  defaultCurrency?: NetworkCurrency;
+  stakeCurrency?: NetworkCurrency;
+  feeCurrencies?: NetworkCurrency[];
+  features?: string[];
+  bech32Config?: {
+    bech32PrefixAccAddr: string;
+    bech32PrefixAccPub: string;
+    bech32PrefixValAddr: string;
+    bech32PrefixValPub: string;
+    bech32PrefixConsAddr: string;
+    bech32PrefixConsPub: string;
+  };
+};
+```
+
+### `stakeCurrency`, `feeCurrencies`
+
+If you don't provide a currency configuration, `defaultCurrency` will be used to configure all other currency types. If a `defaultCurrency` is not provided, the wallet provider's default will be used.
+
+### `bech32Config`
+
+If you don't provide a `bech32Config`, one will be generated for you based on the `chainPrefix`. If a `chainPrefix` default is not provided, the wallet provider's default will be used.

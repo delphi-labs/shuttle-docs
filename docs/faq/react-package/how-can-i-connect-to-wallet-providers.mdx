@@ -1,0 +1,26 @@
+---
+sidebar_position: 2
+---
+
+# How can I connect to wallet providers?
+
+When configuring wallet providers you can set a custom id or leave the default options in place. This also applies to configuration setting for specific appchains. Custom settings allow you to connect to a specific wallet provider and specific chain. Otherwise, you can use dynamic code like in the example on the previous page.
+The following example uses hardcoded values so you can more easily see how it works:
+
+```ts
+import { useCosmosWallets } from "@delphilabs/cosmos-wallets";
+
+function App() {
+  const { connect } = useCosmosWallets();
+
+  return <>
+    <button
+      onClick={() => connect('keplr', 'mars-1')}
+    >
+      Connect Keplr ({network.name})
+    </button>
+  </>
+}
+```
+
+In the example above, the user will connect to Mars Hub (using the `mars-1` chain id) via Keplr (using the wallet provider id `keplr`).

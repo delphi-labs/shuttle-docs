@@ -1,0 +1,24 @@
+---
+sidebar_position: 1
+---
+
+# React 
+
+To setup you must wrap your React app with the `CosmosWalletsContextProvider` like so:
+
+```ts
+import { CosmosWalletsContextProvider } from "@delphilabs/cosmos-wallets";
+
+function App() {
+  return <CosmosWalletsContextProvider
+    providers={[
+      // ...
+    ]}
+    // Add the following prop if you want wallet connections
+    // to be persisted to local storage.
+    persistent
+  >
+    <Component {...pageProps} />
+  </CosmosWalletsContextProvider>
+}
+```

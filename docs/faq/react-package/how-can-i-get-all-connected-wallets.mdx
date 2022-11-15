@@ -1,0 +1,30 @@
+---
+sidebar_position: 3
+---
+
+# How can I get all connected wallets?
+
+Since the core thesis of this package is the ability to build a DApp that is multi wallet and multi chain, it was built to handle multiple wallet connections. You can easily view all connected wallets with the following code:
+
+```ts
+import { useCosmosWallets } from "@delphilabs/cosmos-wallets";
+
+function App() {
+  const { getWallets } = useCosmosWallets();
+  
+  return <>
+    <h2>Connected Wallets</h2>
+    {getWallets().map((wallet) => {
+      return (
+        <div key={wallet.id}>
+          <p>ID: {wallet.id}</p>
+          <p>Provider ID: {wallet.providerId}</p>
+          <p>Chain ID: {wallet.network.chainId}</p>
+          <p>Address: {wallet.account.address}</p>
+          <hr />
+        </div>
+      );
+    })}
+  </>
+}
+```

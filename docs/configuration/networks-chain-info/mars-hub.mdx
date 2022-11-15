@@ -1,0 +1,45 @@
+---
+sidebar_position: 1
+---
+
+# Mars Hub
+
+## Mainnet (mars-1)
+
+```ts 
+const chainInfo: Network = {
+  name: "Mars Hub",
+  chainId: "mars-1",
+  chainPrefix: "mars",
+  rpc: "https://rpc.marsprotocol.io/",
+  rest: "https://rest.marsprotocol.io/",
+  defaultCurrency: {
+    coinDenom: "MARS",
+    coinMinimalDenom: "umars",
+    coinDecimals: 6,
+    coinGeckoId: "mars",
+  },
+  gasPrice: "0.025umars",
+  features: ["ibc-transfer", "ibc-go"],
+};
+```
+
+## Testnet (ares-1)
+
+```ts
+const chainInfo: Network = {
+  name: "Mars Hub Testnet",
+  chainId: "ares-1",
+  chainPrefix: "mars",
+  rpc: "https://testnet-rpc.marsprotocol.io/",
+  rest: "https://testnet-rest.marsprotocol.io/",
+  defaultCurrency: {
+    coinDenom: "MARS",
+    coinMinimalDenom: "umars",
+    coinDecimals: 6,
+    coinGeckoId: "mars",
+  },
+  gasPrice: "0.025umars",
+  features: ["ibc-transfer", "ibc-go"],
+};
+```

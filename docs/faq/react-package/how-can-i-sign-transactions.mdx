@@ -1,0 +1,84 @@
+---
+sidebar_position: 6
+---
+
+# How can I sign transactions?
+
+Similar to the example shown in the previous page, we will also sign a swap on Terra 2 Astroport. First, we need to create the messages to be signed. Then, we call the `sign` method and wait for the result.
+
+```ts
+import { useCosmosWallets } from "@delphilabs/cosmos-wallets";
+
+const toBase64 = (obj: object) => {
+  return Buffer.from(JSON.stringify(obj)).toString("base64");
+};
+
+function App() {
+  const { connect, recentWallet, sign } = useCosmosWallets();
+  
+  if (!recentWallet) {
+    return <>
+      <button onClick={() => connect("terra-station", "phoenix-1")}>Connect to Terra 2</button>
+    </>;
+  }
+
+  const messages = [
+    {
+      type: "/cosmwasm.wasm.v1.MsgExecuteContract",
+      sender: recentWallet.account.address,
+      // ASTRO Token
+      contract: "terra1nsuqsk6kh58ulczatwev87ttq2z6r3pusulg9r24mfj2fvtzd4uq3exn26",
+      msg: {
+        send: {
+          // 5 ASTRO
+          amount: "5000000",
+          // ASTRO-xASTRO Astroport Pair
+          contract: "terra1muhks8yr47lwe370wf65xg5dmyykrawqpkljfm39xhkwhf4r7jps0gwl4l",
+          msg: toBase64({
+            swap: {
+              max_spread: "0.005",
+              belief_price: "1.0417339453173018",
+            },
+          }),
+        },
+      }        
+    }
+  ];
+  
+  const onSwap = () => {
+    sign({ 
+      messages,
+      // Redundant since when not set, it will use the recentWallet.
+      wallet: recentWallet 
+    }).then(result => {
+      console.log("Signing result: ", result);
+    }).catch(error => {
+      console.error("Error while signing: ", error);
+    });
+  }
+
+  return <>
+    <button onClick={onSwap}>Sign swap of 5 ASTRO for xASTRO</button>
+  </>
+}
+```
+
+To broadcast messages, they must comply with the following structure:
+
+```ts
+type BroadcastMessage = {
+    type: string;
+    sender: string;
+    contract: string;
+    msg: any;
+};
+```
+
+The result of the signing will have the following structure:
+
+```ts
+type SigningResult = {
+    signatures: Uint8Array[];
+    response: any;
+};
+```

@@ -1,0 +1,8 @@
+{
+    "label": "Neworks - Chain Info", 
+    "position": 2, 
+    "link": {
+        "type": "generated-index",
+        "description": "Shuttle currently supports any chains. Details for connecting to specific appchains including Mars Hub and Terra 2 are covered on the following pages."
+    }
+}
