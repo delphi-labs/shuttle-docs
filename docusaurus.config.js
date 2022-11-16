@@ -14,7 +14,7 @@ const {
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Shuttle',
-  tagline: 'Navigate the Cosmos',
+  tagline: 'Navigate through the chaos of the Cosmos',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -130,13 +130,13 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Shuttle',
-        logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
-          width: 30,
-          height: 24,
-        },
+        title: 'Shuttle 🚀',
+        // logo: {
+        //   alt: 'My Site Logo',
+        //   src: 'img/logo.svg',
+        //   width: 30,
+        //   height: 24,
+        // },
         items: [
           {
             to: '/docs/getting-started/introduction',    // ./docs-api/intro.md

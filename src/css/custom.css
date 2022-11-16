@@ -16,6 +16,7 @@
 
   --ifm-link-color: rgb(52, 109, 219);
   --ifm-font-family-base: 'Inter'
+
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -38,7 +39,23 @@
 }
 
 div.pagination-nav__label {
-  color: var(--ifm-color-content-secondary) !important;
+  color: var(--ifm-color-content-secondary);
 }
 
+.footer__link-item:hover {
+  color: var(--ifm-footer-link-color);
+}
 
+.hero--primary {
+  --ifm-hero-background-color: #050529;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: #050529;
+
+}
+
+.featureSvg_src-components-HomepageFeatures-styles-module {
+  height: 50px !important;
+  width: 50px !important;
+}
