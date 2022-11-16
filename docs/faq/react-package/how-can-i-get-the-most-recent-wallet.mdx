@@ -4,13 +4,13 @@ sidebar_position: 4
 
 # How can I get the most recent wallet?
 
-A core piece of logic of any DApp frontend is, knowing which wallet address is connected with it. Most DApps only need to know a single wallet that is connected to a single chain. That's why the following package exposes the most `recentWallet`.
+A core piece of logic of any dApp frontend is, knowing which wallet address is connected with it. Most dApps only need to know a single wallet that is connected to a single chain. That's why the following package exposes the most `recentWallet`.
 
 ```ts
-import { useCosmosWallets } from "@delphilabs/cosmos-wallets";
+import { useShuttle } from "@delphilabs/shuttle";
 
 function App() {
-  const { recentWallet } = useCosmosWallets();
+  const { recentWallet } = useShuttle();
    
   return <>
     {recentWallet && (

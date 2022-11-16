@@ -7,14 +7,14 @@ sidebar_position: 5
 In the following example we will execute a swap on Terra 2 Astroport. First, we need to create the messages to be signed and posted. Then, we call the `broadcast` method and wait for the result.
 
 ```ts
-import { useCosmosWallets } from "@delphilabs/cosmos-wallets";
+import { useShuttle } from "@delphilabs/shuttle";
 
 const toBase64 = (obj: object) => {
   return Buffer.from(JSON.stringify(obj)).toString("base64");
 };
 
 function App() {
-  const { connect, recentWallet, broadcast } = useCosmosWallets();
+  const { connect, recentWallet, broadcast } = useShuttle();
   
   if (!recentWallet) {
     return <>

@@ -4,20 +4,20 @@ sidebar_position: 8
 
 # How can I add persistency?
 
-Persistent DApps connections work like regular application. Just as sessions can be remembered, so, too, can wallet connections.
+Persistent dApps connections work like regular application. Just as sessions can be remembered, so, too, can wallet connections.
 
-This package comes with a built-in persistency feature. To enable it, do the following:
+The package comes with a built-in persistency feature. To enable it, do the following:
 
 ```ts
-import { CosmosWalletsContextProvider } from "@delphilabs/cosmos-wallets";
+import { ShuttleContextProvider } from "@delphilabs/shuttle";
 
 function App() {
-  return <CosmosWalletsContextProvider
+  return <ShuttleContextProvider
     // Add the following prop if you want wallet connections
     // to be persisted to local storage.
     persistent
   >
     <Component {...pageProps} />
-  </CosmosWalletsContextProvider>
+  </ShuttleContextProvider>
 }
 ```

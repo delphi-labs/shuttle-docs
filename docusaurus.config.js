@@ -166,7 +166,7 @@ const config = {
           // {to: '/blog', label: 'Blog', position: 'left'},
 
           {
-            href: 'https://github.com/delphidigital/cosmos-wallets',
+            href: 'https://github.com/delphidigital/shuttle',
             label: 'GitHub',
             position: 'right',
           },
@@ -188,33 +188,25 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Terms of Service',
-                to: '/docs/overview/legal/terms-of-service',
+                label: 'Installation',
+                to: '/docs/getting-started/installation',
               },
               {
-                label: 'Privacy Policy',
-                to: '/docs/overview/legal/privacy-policy',
-              },
-              {
-                label: 'Cookie Policy',
-                to: '/docs/overview/legal/cookie-policy',
+                label: 'FAQ',
+                to: '/docs/faq/category/react-package',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Links',
             items: [
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/astroport_fi',
+                label: 'GitHub',
+                href: 'https://github.com/delphidigital/shuttle',
               },
               {
-                label: 'Discord',
-                href: 'https://discord.com/invite/astroport',
-              },
-              {
-                label: 'Forum',
-                href: 'https://forum.astroport.fi/',
+                label: 'npm',
+                href: 'https://www.npmjs.com/package/@delphilabs/shuttle',
               },
             ],
           },
@@ -222,12 +214,8 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                href: 'https://blog.astroport.fi/',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Delphi Labs Twitter',
+                href: 'https://twitter.com/delphi_labs',
               },
             ],
           },

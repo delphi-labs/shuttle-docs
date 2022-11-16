@@ -9,10 +9,10 @@ There are several possibilities to disconnect active wallet connections.
 ### Variant 1 - Disconnect All
 
 ```ts
-import { useCosmosWallets } from "@delphilabs/cosmos-wallets";
+import { useShuttle } from "@delphilabs/shuttle";
 
 function App() {
-  const { disconnect } = useCosmosWallets();
+  const { disconnect } = useShuttle();
    
   return <>
     <button onClick={() => disconnect()}>Disconnect</button>
@@ -23,10 +23,10 @@ function App() {
 ### Variant 2 - Disconnect from a specific provider
 
 ```ts
-import { useCosmosWallets } from "@delphilabs/cosmos-wallets";
+import { useShuttle } from "@delphilabs/shuttle";
 
 function App() {
-  const { disconnect } = useCosmosWallets();
+  const { disconnect } = useShuttle();
    
   return <>
     <button onClick={() => disconnect("keplr")}>Disconnect Keplr</button>
@@ -37,10 +37,10 @@ function App() {
 ### Variant 3 - Disconnect from a specific wallet provider and specific chain
 
 ```ts
-import { useCosmosWallets } from "@delphilabs/cosmos-wallets";
+import { useShuttle } from "@delphilabs/shuttle";
 
 function App() {
-  const { disconnect } = useCosmosWallets();
+  const { disconnect } = useShuttle();
    
   return <>
     <button onClick={() => disconnect("keplr", "mars-1")}>Disconnect Keplr on Mars Hub</button>
@@ -51,10 +51,10 @@ function App() {
 ### Variant 4 - Disconnect a specific wallet connection
 
 ```ts
-import { useCosmosWallets } from "@delphilabs/cosmos-wallets";
+import { useShuttle } from "@delphilabs/shuttle";
 
 function App() {
-  const { recentWallet, disconnectWallet } = useCosmosWallets();
+  const { recentWallet, disconnectWallet } = useShuttle();
    
   return <>
     <button onClick={() => disconnectWallet(recentWallet)}>Disconnect {recentWallet.id}</button>

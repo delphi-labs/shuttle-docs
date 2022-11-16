@@ -4,13 +4,13 @@ sidebar_position: 1
 
 # React 
 
-To setup you must wrap your React app with the `CosmosWalletsContextProvider` like so:
+To setup you must wrap your React app with the `ShuttleContextProvider` like so:
 
 ```ts
-import { CosmosWalletsContextProvider } from "@delphilabs/cosmos-wallets";
+import { ShuttleContextProvider } from "@delphilabs/shuttle";
 
 function App() {
-  return <CosmosWalletsContextProvider
+  return <ShuttleContextProvider
     providers={[
       // ...
     ]}
@@ -19,6 +19,6 @@ function App() {
     persistent
   >
     <Component {...pageProps} />
-  </CosmosWalletsContextProvider>
+  </ShuttleContextProvider>
 }
 ```

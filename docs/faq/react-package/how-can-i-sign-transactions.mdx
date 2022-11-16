@@ -7,14 +7,14 @@ sidebar_position: 6
 Similar to the example shown in the previous page, we will also sign a swap on Terra 2 Astroport. First, we need to create the messages to be signed. Then, we call the `sign` method and wait for the result.
 
 ```ts
-import { useCosmosWallets } from "@delphilabs/cosmos-wallets";
+import { useShuttle } from "@delphilabs/shuttle";
 
 const toBase64 = (obj: object) => {
   return Buffer.from(JSON.stringify(obj)).toString("base64");
 };
 
 function App() {
-  const { connect, recentWallet, sign } = useCosmosWallets();
+  const { connect, recentWallet, sign } = useShuttle();
   
   if (!recentWallet) {
     return <>

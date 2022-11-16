@@ -4,13 +4,13 @@ sidebar_position: 1
 
 # How can I fetch all availiable wallet providers?
 
-You can fetch all wallet providers with the code below. This is particularly useful when you are building the UI for a DApp and would like to display the connection options available to your users.
+You can fetch all wallet providers with the code below. This is particularly useful when you are building the UI for a dApp and would like to display the connection options available to your users.
 
 ```ts 
-import { useCosmosWallets } from "@delphilabs/cosmos-wallets";
+import { useShuttle } from "@delphilabs/shuttle";
 
 function App() {
-  const { providers } = useCosmosWallets();
+  const { providers } = useShuttle();
 
   return <>
     {providers.map((provider) => {

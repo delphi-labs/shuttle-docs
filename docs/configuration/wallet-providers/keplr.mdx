@@ -5,10 +5,11 @@ sidebar_position: 1
 # Keplr
 
 The Keplr provider is responsible for connecting your DApp with the most updated browser extension available [here](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en).
-When configuring the Cosmos Wallets package for Keplr, set up the provider information as follows:
+
+When configuring Shuttle for Keplr, set up the provider information as follows:
 
 ```ts
-import { KeplrProvider } from "@delphilabs/cosmos-wallets";
+import { KeplrProvider } from "@delphilabs/shuttle";
 
 const KeplrProvider = new KeplrProvider({
   networks: [
@@ -45,4 +46,5 @@ const KeplrProvider = new KeplrProvider({
 });
 ```
 
-For more information on how to configure a network object, check this [page](./network.mdx).
+For more information on how to configure a network object, check this [page](../../api-docs/type-objects/network).
+

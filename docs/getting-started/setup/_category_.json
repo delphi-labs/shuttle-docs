@@ -3,6 +3,6 @@
     "position": 3, 
     "link": {
         "type": "generated-index",
-        "description": "You can use Cosmos Wallets with React, VueJS or VanillaJS as covered in subsequent sections."
+        "description": "You can use Shuttle with React, VueJS or VanillaJS as covered in subsequent sections."
     }
 }

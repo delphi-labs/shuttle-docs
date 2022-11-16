@@ -14,13 +14,8 @@
   --ifm-color-primary-lighter: #000000;
   --ifm-color-primary-lightest: #000000;
 
-  /* --ifm-menu-color-active: #000000;
-  --ifm-navbar-link-hover-color: #000000; */
-  /* --ifm-toc-link-color: #000000; */
-}
-
-.body {
-  font-family: Eina03, Verdana, sans-serif;
+  --ifm-link-color: rgb(52, 109, 219);
+  --ifm-font-family-base: 'Inter'
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -34,3 +29,16 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../static/font/inter/static/Inter-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+div.pagination-nav__label {
+  color: var(--ifm-color-content-secondary) !important;
+}
+
+
