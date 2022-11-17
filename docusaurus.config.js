@@ -209,7 +209,7 @@ const config = {
               },
               {
                 label: 'npm',
-                href: 'https://www.npmjs.com/package/@delphilabs/shuttle',
+                href: 'https://www.npmjs.com/package/@delphi-labs/shuttle',
               },
             ],
           },
