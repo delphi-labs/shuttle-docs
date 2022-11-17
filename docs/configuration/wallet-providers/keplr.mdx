@@ -9,7 +9,7 @@ The Keplr provider is responsible for connecting your DApp with the most updated
 When configuring Shuttle for Keplr, set up the provider information as follows:
 
 ```ts
-import { KeplrProvider } from "@delphilabs/shuttle";
+import { KeplrProvider } from "@delphi-labs/shuttle";
 
 const KeplrProvider = new KeplrProvider({
   networks: [
@@ -41,10 +41,9 @@ const KeplrProvider = new KeplrProvider({
       },
       gasPrice: "0.025umars",
       features: ["ibc-transfer", "ibc-go"],
-    }
+    },
   ],
 });
 ```
 
 For more information on how to configure a network object, check this [page](../../api-docs/type-objects/network).
-

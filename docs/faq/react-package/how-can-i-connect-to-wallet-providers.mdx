@@ -9,18 +9,18 @@ When configuring wallet providers you can set a custom id or leave the default o
 The following example uses hardcoded values so you can more easily see how it works:
 
 ```ts
-import { useShuttle } from "@delphilabs/shuttle";
+import { useShuttle } from "@delphi-labs/shuttle";
 
 function App() {
   const { connect } = useShuttle();
 
-  return <>
-    <button
-      onClick={() => connect('keplr', 'mars-1')}
-    >
-      Connect Keplr ({network.name})
-    </button>
-  </>
+  return (
+    <>
+      <button onClick={() => connect("keplr", "mars-1")}>
+        Connect Keplr ({network.name})
+      </button>
+    </>
+  );
 }
 ```
 

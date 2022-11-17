@@ -7,21 +7,23 @@ sidebar_position: 4
 A core piece of logic of any dApp frontend is, knowing which wallet address is connected with it. Most dApps only need to know a single wallet that is connected to a single chain. That's why the following package exposes the most `recentWallet`.
 
 ```ts
-import { useShuttle } from "@delphilabs/shuttle";
+import { useShuttle } from "@delphi-labs/shuttle";
 
 function App() {
   const { recentWallet } = useShuttle();
-   
-  return <>
-    {recentWallet && (
-      <>
-        <h2>Recent Wallet</h2>
-        <p>ID: {recentWallet.id}</p>
-        <p>Provider ID: {recentWallet.providerId}</p>
-        <p>Chain ID: {recentWallet.network.chainId}</p>
-        <p>Address: {recentWallet.account.address}</p>
-      </>
-    )}
-  </>
+
+  return (
+    <>
+      {recentWallet && (
+        <>
+          <h2>Recent Wallet</h2>
+          <p>ID: {recentWallet.id}</p>
+          <p>Provider ID: {recentWallet.providerId}</p>
+          <p>Chain ID: {recentWallet.network.chainId}</p>
+          <p>Address: {recentWallet.account.address}</p>
+        </>
+      )}
+    </>
+  );
 }
 ```

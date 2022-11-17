@@ -2,23 +2,27 @@
 sidebar_position: 1
 ---
 
-# React 
+# React
 
 To setup you must wrap your React app with the `ShuttleProvider` like so:
 
 ```ts
-import { ShuttleProvider } from "@delphilabs/shuttle";
+import { ShuttleProvider } from "@delphi-labs/shuttle";
 
 function App() {
-  return <ShuttleProvider
-    providers={[
-      // ...
-    ]}
-    // Add the following prop if you want wallet connections
-    // to be persisted to local storage.
-    persistent
-  >
-    <Component {...pageProps} />
-  </ShuttleProvider>
+  return (
+    <ShuttleProvider
+      providers={
+        [
+          // ...
+        ]
+      }
+      // Add the following prop if you want wallet connections
+      // to be persisted to local storage.
+      persistent
+    >
+      <Component {...pageProps} />
+    </ShuttleProvider>
+  );
 }
 ```

@@ -7,7 +7,7 @@ sidebar_position: 5
 In the following example we will execute a swap on Terra 2 Astroport. First, we need to create the messages to be signed and posted. Then, we call the `broadcast` method and wait for the result.
 
 ```ts
-import { useShuttle } from "@delphilabs/shuttle";
+import { useShuttle } from "@delphi-labs/shuttle";
 
 const toBase64 = (obj: object) => {
   return Buffer.from(JSON.stringify(obj)).toString("base64");
@@ -15,11 +15,15 @@ const toBase64 = (obj: object) => {
 
 function App() {
   const { connect, recentWallet, broadcast } = useShuttle();
-  
+
   if (!recentWallet) {
-    return <>
-      <button onClick={() => connect("terra-station", "phoenix-1")}>Connect to Terra 2</button>
-    </>;
+    return (
+      <>
+        <button onClick={() => connect("terra-station", "phoenix-1")}>
+          Connect to Terra 2
+        </button>
+      </>
+    );
   }
 
   const messages = [
@@ -27,13 +31,15 @@ function App() {
       type: "/cosmwasm.wasm.v1.MsgExecuteContract",
       sender: recentWallet.account.address,
       // ASTRO Token
-      contract: "terra1nsuqsk6kh58ulczatwev87ttq2z6r3pusulg9r24mfj2fvtzd4uq3exn26",
+      contract:
+        "terra1nsuqsk6kh58ulczatwev87ttq2z6r3pusulg9r24mfj2fvtzd4uq3exn26",
       msg: {
         send: {
           // 5 ASTRO
           amount: "5000000",
           // ASTRO-xASTRO Astroport Pair
-          contract: "terra1muhks8yr47lwe370wf65xg5dmyykrawqpkljfm39xhkwhf4r7jps0gwl4l",
+          contract:
+            "terra1muhks8yr47lwe370wf65xg5dmyykrawqpkljfm39xhkwhf4r7jps0gwl4l",
           msg: toBase64({
             swap: {
               max_spread: "0.005",
@@ -41,25 +47,29 @@ function App() {
             },
           }),
         },
-      }        
-    }
+      },
+    },
   ];
-  
+
   const onSwap = () => {
-    broadcast({ 
+    broadcast({
       messages,
       // Redundant since when not set, it will use the recentWallet.
-      wallet: recentWallet 
-    }).then(result => {
-      console.log("Broadcasting result: ", result);
-    }).catch(error => {
-      console.error("Error while broadcasting: ", error);
-    });
-  }
+      wallet: recentWallet,
+    })
+      .then((result) => {
+        console.log("Broadcasting result: ", result);
+      })
+      .catch((error) => {
+        console.error("Error while broadcasting: ", error);
+      });
+  };
 
-  return <>
-    <button onClick={onSwap}>Swap 5 ASTRO for xASTRO</button>
-  </>
+  return (
+    <>
+      <button onClick={onSwap}>Swap 5 ASTRO for xASTRO</button>
+    </>
+  );
 }
 ```
 
@@ -67,10 +77,10 @@ To broadcast messages, they must comply with the following structure:
 
 ```ts
 type BroadcastMessage = {
-    type: string;
-    sender: string;
-    contract: string;
-    msg: any;
+  type: string;
+  sender: string;
+  contract: string;
+  msg: any;
 };
 ```
 
@@ -78,8 +88,8 @@ The result of the broadcast will have the following structure:
 
 ```ts
 type BroadcastResult = {
-    hash: string;
-    rawLogs: string;
-    response: any;
+  hash: string;
+  rawLogs: string;
+  response: any;
 };
 ```

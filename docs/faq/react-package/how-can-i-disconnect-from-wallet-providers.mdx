@@ -9,55 +9,67 @@ There are several possibilities to disconnect active wallet connections.
 ### Variant 1 - Disconnect All
 
 ```ts
-import { useShuttle } from "@delphilabs/shuttle";
+import { useShuttle } from "@delphi-labs/shuttle";
 
 function App() {
   const { disconnect } = useShuttle();
-   
-  return <>
-    <button onClick={() => disconnect()}>Disconnect</button>
-  </>
+
+  return (
+    <>
+      <button onClick={() => disconnect()}>Disconnect</button>
+    </>
+  );
 }
 ```
 
 ### Variant 2 - Disconnect from a specific provider
 
 ```ts
-import { useShuttle } from "@delphilabs/shuttle";
+import { useShuttle } from "@delphi-labs/shuttle";
 
 function App() {
   const { disconnect } = useShuttle();
-   
-  return <>
-    <button onClick={() => disconnect("keplr")}>Disconnect Keplr</button>
-  </>
+
+  return (
+    <>
+      <button onClick={() => disconnect("keplr")}>Disconnect Keplr</button>
+    </>
+  );
 }
 ```
 
 ### Variant 3 - Disconnect from a specific wallet provider and specific chain
 
 ```ts
-import { useShuttle } from "@delphilabs/shuttle";
+import { useShuttle } from "@delphi-labs/shuttle";
 
 function App() {
   const { disconnect } = useShuttle();
-   
-  return <>
-    <button onClick={() => disconnect("keplr", "mars-1")}>Disconnect Keplr on Mars Hub</button>
-  </>
+
+  return (
+    <>
+      <button onClick={() => disconnect("keplr", "mars-1")}>
+        Disconnect Keplr on Mars Hub
+      </button>
+    </>
+  );
 }
 ```
 
 ### Variant 4 - Disconnect a specific wallet connection
 
 ```ts
-import { useShuttle } from "@delphilabs/shuttle";
+import { useShuttle } from "@delphi-labs/shuttle";
 
 function App() {
   const { recentWallet, disconnectWallet } = useShuttle();
-   
-  return <>
-    <button onClick={() => disconnectWallet(recentWallet)}>Disconnect {recentWallet.id}</button>
-  </>
+
+  return (
+    <>
+      <button onClick={() => disconnectWallet(recentWallet)}>
+        Disconnect {recentWallet.id}
+      </button>
+    </>
+  );
 }
 ```

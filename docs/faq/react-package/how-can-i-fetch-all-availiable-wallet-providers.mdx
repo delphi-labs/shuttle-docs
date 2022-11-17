@@ -6,30 +6,32 @@ sidebar_position: 1
 
 You can fetch all wallet providers with the code below. This is particularly useful when you are building the UI for a dApp and would like to display the connection options available to your users.
 
-```ts 
-import { useShuttle } from "@delphilabs/shuttle";
+```ts
+import { useShuttle } from "@delphi-labs/shuttle";
 
 function App() {
   const { providers } = useShuttle();
 
-  return <>
-    {providers.map((provider) => {
-      return (
-        <div key={provider.id}>
-          {Array.from(provider.networks.values()).map((network) => {
-            return (
-              <button
-                key={`${provider.id}-${network.chainId}`}
-                disabled={!provider.initialized}
-                onClick={() => null}
-              >
-                Connect {provider.name} ({network.name})
-              </button>
-            );
-          })}
-        </div>
-      );
-    })}
-  </>
+  return (
+    <>
+      {providers.map((provider) => {
+        return (
+          <div key={provider.id}>
+            {Array.from(provider.networks.values()).map((network) => {
+              return (
+                <button
+                  key={`${provider.id}-${network.chainId}`}
+                  disabled={!provider.initialized}
+                  onClick={() => null}
+                >
+                  Connect {provider.name} ({network.name})
+                </button>
+              );
+            })}
+          </div>
+        );
+      })}
+    </>
+  );
 }
 ```
