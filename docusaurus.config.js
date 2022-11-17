@@ -14,12 +14,12 @@ const {
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Shuttle',
-  tagline: 'Navigate through the chaos of the Cosmos',
+  tagline: 'Connecting Wallets to the Cosmos',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  // favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -180,6 +180,9 @@ const config = {
         }
       },
 
+      colorMode: {
+        disableSwitch: true,
+      },
       
       footer: {
         style: 'dark',

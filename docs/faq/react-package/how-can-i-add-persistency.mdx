@@ -9,15 +9,15 @@ Persistent dApps connections work like regular application. Just as sessions can
 The package comes with a built-in persistency feature. To enable it, do the following:
 
 ```ts
-import { ShuttleContextProvider } from "@delphilabs/shuttle";
+import { ShuttleProvider } from "@delphilabs/shuttle";
 
 function App() {
-  return <ShuttleContextProvider
+  return <ShuttleProvider
     // Add the following prop if you want wallet connections
     // to be persisted to local storage.
     persistent
   >
     <Component {...pageProps} />
-  </ShuttleContextProvider>
+  </ShuttleProvider>
 }
 ```
