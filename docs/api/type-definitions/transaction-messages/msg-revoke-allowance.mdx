@@ -1,0 +1,28 @@
+---
+sidebar_position: 5
+---
+
+# MsgRevokeAllowance
+
+The revoke allowance message class representation.
+
+```ts
+class MsgRevokeAllowance extends TransactionMsg<MsgRevokeAllowanceValue> {
+  static TYPE = "/cosmos.feegrant.v1beta1.MsgRevokeAllowance";
+
+  constructor({ granter, grantee }: MsgRevokeAllowanceValue);
+}
+```
+
+---
+
+## MsgRevokeAllowanceValue
+
+Defines the revoke allowance message value.
+
+```ts
+type MsgRevokeAllowanceValue = {
+  granter: string;
+  grantee: string;
+};
+```

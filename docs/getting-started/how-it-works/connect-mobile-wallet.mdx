@@ -1,0 +1,66 @@
+---
+sidebar_position: 2
+---
+
+# Connect to mobile wallet
+
+Connecting to a mobile wallet is a bit more complex than an extension wallet, since it can either be done in a desktop or mobile environment. In a desktop environment its common to use a qr code that the mobile app reads. In a mobile environment we want to redirect to the wallet mobile app.
+
+For this reason shuttle exposes a different method, `mobileConnect` that matches the different flow in order to connect to mobile wallets.
+
+```tsx
+import { useState } from "react";
+import QRCode from "react-qr-code";
+import { useShuttle } from "@delphi-labs/shuttle";
+
+import { isAndroid, isIOS, isMobile } from "./utils/device";
+
+function Header() {
+  const { mobileProviders, mobileConnect } = useShuttle();
+  const [walletconnectUrl, setWalletconnectUrl] = useState("");
+
+  return (
+    <>
+      {mobileProviders.map((mobileProvider) => {
+        return (
+          <button
+            key={mobileProvider.id}
+            onClick={async () => {
+              const urls = await mobileConnect({
+                mobileProviderId: mobileProvider.id,
+                chainId: "mars-1",
+                callback: () => {
+                  setWalletconnectUrl("");
+                },
+              });
+
+              if (isMobile()) {
+                if (isAndroid()) {
+                  window.location.href = urls.androidUrl;
+                } else if (isIOS()) {
+                  window.location.href = urls.iosUrl;
+                } else {
+                  window.location.href = urls.androidUrl;
+                }
+              } else {
+                setWalletconnectUrl(urls.walletconnectUrl);
+              }
+            }}
+            disabled={!mobileProvider.initialized}
+          >
+            {mobileProvider.name}
+          </button>
+        );
+      })}
+
+      {walletconnectUrl && (
+        <>
+          <QRCode value={walletconnectUrl} />
+        </>
+      )}
+    </>
+  );
+}
+```
+
+We are hardcoding the `chainId` we want to connect to, if your dApp is multi-chain we leave the approach you want to use to you. Just as a hint, the `provider` object has all the enabled networks if you access `provider.networks` you could iterate through them to display all possible provider and network combinations.

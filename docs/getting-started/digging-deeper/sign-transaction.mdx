@@ -1,0 +1,52 @@
+---
+sidebar_position: 1
+---
+
+# Sign transaction
+
+Shuttle exposes a `sign` method that allows you to as the name suggest sign messages, it is exactly the same logic as the broadcast transaction.
+
+```tsx
+import {
+  useShuttle,
+  WalletConnection,
+  SigningResult,
+  // ...
+} from "@delphi-labs/shuttle";
+
+import { isMobile } from "./utils/device";
+
+function useMarsClaim(wallet: WalletConnection) {
+  // ...
+
+  return { msgs, feeEstimate };
+}
+
+function Claim() {
+  const { recentWallet, sign } = useShuttle();
+
+  const claim = useMarsClaim(recentWallet);
+
+  const onSubmit = () => {
+    sign({
+      wallet: recentWallet,
+      messages: claim.msgs,
+      feeAmount: claim.feeEstimate?.fee?.amount,
+      gasLimit: claim.feeEstimate?.gasLimit,
+      mobile: isMobile(),
+    })
+      .then((result: SigningResult) => {
+        console.log("Sign result", result);
+      })
+      .catch((error) => {
+        console.error("Sign error", error);
+      });
+  };
+
+  return (
+    <>
+      <button onClick={onSubmit}>Sign claim rewards</button>
+    </>
+  );
+}
+```

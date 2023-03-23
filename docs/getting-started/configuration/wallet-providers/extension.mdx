@@ -1,0 +1,37 @@
+---
+sidebar_position: 1
+---
+
+# Extension Wallets
+
+The extension wallet providers are responsible for connecting your dApp with the wallet browser extension available.
+
+When configuring Shuttle with your extension providers, set it up as follows (example with KeplrProvider):
+
+```ts
+import { KeplrProvider } from "@delphi-labs/shuttle";
+
+import { MAINNET, TESTNET } from "./networks";
+
+const providers = [
+  new KeplrProvider({
+    networks: [MAINNET, TESTNET],
+  }),
+  // ...
+];
+```
+
+For more information on all wallet provider arguments, check this [page](../../../api/type-definitions/wallet-provider).
+
+---
+
+### Supported extension providers
+
+- CosmostationProvider
+- FalconProvider _(only supports Terra)_
+- KeplrProvider
+- LeapCosmosProvider
+- LeapTerraProvider _(only supports Terra)_
+- MetamaskProvider _(only supports Injective)_
+- TerraStationProvider
+- XDefiProvider

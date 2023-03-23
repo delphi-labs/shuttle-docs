@@ -1,0 +1,74 @@
+---
+sidebar_position: 3
+---
+
+# Display connected wallet
+
+Most commonly after a user in your dApp connects to a wallet, we should display the wallet the user is connected to, you can do it like so:
+
+```tsx
+import { useShuttle } from "@delphi-labs/shuttle";
+
+import { useNetworkStore } from "./store";
+
+function Header() {
+  const currentNetworkId = useNetworkStore((state) => state.currentNetworkId);
+  const { connect, providers, getWallets } = useShuttle();
+  const wallet = getWallets({ chainId: currentNetworkId })[0];
+
+  return (
+    <>
+      {wallet && (
+        <>
+          <p>Address: {wallet.account.address}</p>
+        </>
+      )}
+
+      {!wallet && (
+        <>
+          {providers.map((provider) => {
+            return (
+              <button
+                key={provider.id}
+                onClick={() =>
+                  connect({
+                    providerId: provider.id,
+                    chainId: currentNetworkId,
+                  })
+                }
+                disabled={!provider.initialized}
+              >
+                {provider.name}
+              </button>
+            );
+          })}
+        </>
+      )}
+    </>
+  );
+}
+```
+
+We are using the `getWallets` helper method that `useShuttle` exposes, if your dApp isn't multi chain you can just use `recentWallet` directly.
+
+```tsx
+import { useShuttle } from "@delphi-labs/shuttle";
+
+function Header() {
+  const { /* ... */, recentWallet } = useShuttle();
+
+  return (
+    <>
+      {recentWallet && (
+        <>
+          <p>Address: {recentWallet.account.address}</p>
+        </>
+      )}
+
+      {!recentWallet && (
+        /* ... */
+      )}
+    </>
+  );
+}
+```

@@ -1,0 +1,60 @@
+---
+sidebar_position: 2
+---
+
+# Vite (React)
+
+To setup you must wrap your Vite react app with the `ShuttleProvider` like so:
+
+```tsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { ShuttleProvider } from "@delphi-labs/shuttle";
+
+import App from "./App";
+
+const providers = [
+  // ...
+];
+
+const mobileProviders = [
+  // ...
+];
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <React.StrictMode>
+    <ShuttleProvider
+      providers={providers}
+      mobileProviders={mobileProviders}
+      persistent
+    >
+      <App />
+    </ShuttleProvider>
+  </React.StrictMode>
+);
+```
+
+Notice that the providers are defined outside the component to make sure those arrays are constant, this is a very important rule to follow.
+
+---
+
+### Node polyfills
+
+Some frameworks require you to install node polyfills for Shuttle to work, for vite you need to complete the following extra steps:
+
+```bash
+npm install vite-plugin-node-polyfills
+```
+
+Then in your `vite.config.ts` add the polyfills plugin.
+
+```ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import { nodePolyfills } from "vite-plugin-node-polyfills";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), nodePolyfills()],
+});
+```

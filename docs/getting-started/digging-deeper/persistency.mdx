@@ -1,0 +1,28 @@
+---
+sidebar_position: 3
+---
+
+# Persistency
+
+Persistent dApps connections work like regular application. Just as sessions can be remembered, so, too, can wallet connections.
+
+The package comes with a built-in persistency feature (zustand store). To enable it, do the following:
+
+```tsx
+import { ShuttleProvider } from "@delphi-labs/shuttle";
+
+function App() {
+  return (
+    <ShuttleProvider
+      // Add the following prop if you want wallet connections
+      // to be persisted to local storage.
+      persistent
+      // You can change the key used to persist
+      // the store in local storage.
+      persistentKey={"shuttle-v2"}
+    >
+      <Component {...pageProps} />
+    </ShuttleProvider>
+  );
+}
+```

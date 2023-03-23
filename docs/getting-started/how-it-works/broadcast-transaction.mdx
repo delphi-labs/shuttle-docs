@@ -1,0 +1,116 @@
+---
+sidebar_position: 5
+---
+
+# Broadcast transaction
+
+Shuttle exposes a `broadcast` method that allows you to as the name suggest broadcast messages.
+
+```tsx
+import {
+  useShuttle,
+  WalletConnection,
+  BroadcastResult,
+  MsgExecuteContract,
+} from "@delphi-labs/shuttle";
+
+import { isMobile } from "./utils/device";
+
+function useMarsClaim(wallet: WalletConnection) {
+  const msgs = useMemo(() => {
+    if (!wallet) {
+      return [];
+    }
+
+    return [
+      new MsgExecuteContract({
+        sender: wallet.account.address,
+        contract: "...",
+        msg: {
+          claim_rewards: {},
+        },
+      }),
+    ];
+  }, [wallet]);
+
+  return { msgs };
+}
+
+function Claim() {
+  const { recentWallet, broadcast } = useShuttle();
+
+  const claim = useMarsClaim(recentWallet);
+
+  const onSubmit = () => {
+    broadcast({
+      wallet: recentWallet,
+      messages: claim.msgs,
+      mobile: isMobile(),
+    })
+      .then((result: BroadcastResult) => {
+        console.log("Broadcast result", result);
+      })
+      .catch((error) => {
+        console.error("Broadcast error", error);
+      });
+  };
+
+  return (
+    <>
+      <button onClick={onSubmit}>Claim rewards</button>
+    </>
+  );
+}
+```
+
+An important detail to notice is the `mobile` property, shuttle requires the dApp to let it know which environment are we on, desktop or mobile. This
+is only relevant for mobile wallets but the `broadcast` method is generic so we always need to pass the option so that shuttle can redirect the user to the mobile app if that is the case.
+
+---
+
+It is possible to send a calculated fee, you can check the [Estimate fee](../digging-deeper/estimate-fee) page on how to do that, by passing in the `feeAmount` and `gasLimit` options.
+
+```tsx
+import {
+  useShuttle,
+  WalletConnection,
+  BroadcastResult,
+  // ...
+} from "@delphi-labs/shuttle";
+
+import { isMobile } from "./utils/device";
+
+function useMarsClaim(wallet: WalletConnection) {
+  // ...
+
+  return { msgs, feeEstimate };
+}
+
+function Claim() {
+  const { recentWallet, broadcast } = useShuttle();
+
+  const claim = useMarsClaim(recentWallet);
+
+  const onSubmit = () => {
+    broadcast({
+      wallet: recentWallet,
+      messages: claim.msgs,
+      feeAmount: claim.feeEstimate?.fee?.amount,
+      gasLimit: claim.feeEstimate?.gasLimit,
+      mobile: isMobile(),
+    })
+      .then((result: BroadcastResult) => {
+        console.log("Broadcast result", result);
+      })
+      .catch((error) => {
+        console.error("Broadcast error", error);
+      });
+  };
+
+  return (
+    <>
+      <button onClick={onSubmit}>Claim rewards</button>
+    </>
+  );
+}
+```

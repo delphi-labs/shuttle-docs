@@ -1,8 +1,0 @@
-{
-    "label": "Wallet Providers", 
-    "position": 1, 
-    "link": {
-        "type": "generated-index",
-        "description": "Shuttle currently supports the following wallets/connections: Keplr, TerraStation, and WalletConnect. The integration process for wallets is covered in subsequent pages."
-    }
-}

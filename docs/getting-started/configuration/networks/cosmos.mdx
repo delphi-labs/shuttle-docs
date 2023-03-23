@@ -1,0 +1,26 @@
+---
+sidebar_position: 1
+---
+
+# Cosmos Chains
+
+Shuttle supports any cosmos chains, when setting your providers you can configure which networks are enabled for that specific provider by sending in a network object like the one bellow (example with Mars chain).
+
+```ts
+const MARS_MAINNET: Network = {
+  name: "Mars Hub",
+  chainId: "mars-1",
+  chainPrefix: "mars",
+  rpc: "https://rpc.marsprotocol.io/",
+  rest: "https://rest.marsprotocol.io/",
+  defaultCurrency: {
+    coinDenom: "MARS",
+    coinMinimalDenom: "umars",
+    coinDecimals: 6,
+    coinGeckoId: "mars",
+  },
+  gasPrice: "0.015umars",
+};
+```
+
+For more information on all network configuration options, check this [page](../../api/type-definitions/network).

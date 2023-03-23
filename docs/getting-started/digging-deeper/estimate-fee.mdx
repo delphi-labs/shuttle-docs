@@ -1,0 +1,51 @@
+---
+sidebar_position: 2
+---
+
+# Estimate fee
+
+In order to estimate the fee, chains generally expose a simulate functionality which don't actually broadcast the transaction, so shuttle exposes a `simulate` method.
+
+A very common approach is to have a custom hook that estimates the fee, using the simulate functionality from shuttle.
+
+```ts
+// useFeeEstimate.ts
+
+import {
+  WalletConnection,
+  TransactionMsg,
+  useShuttle,
+} from "@delphi-labs/shuttle";
+import { useQuery } from "@tanstack/react-query";
+
+type Props = {
+  wallet: WalletConnection;
+  messages: TransactionMsg[];
+};
+
+export default function useFeeEstimate({ wallet, messages }: Props) {
+  const { simulate } = useShuttle();
+
+  return useQuery(
+    ["fee-estimate", JSON.stringify(messages), wallet?.id],
+    async () => {
+      if (!messages || messages.length <= 0 || !wallet) {
+        return null;
+      }
+
+      const response: SimulateResult = await simulate({
+        messages,
+        wallet,
+      });
+
+      return {
+        fee: response.fee?.amount[0],
+        gasLimit: response.fee?.gas,
+      };
+    },
+    {
+      enabled: !!messages && messages.length > 0 && !!wallet,
+    }
+  );
+}
+```

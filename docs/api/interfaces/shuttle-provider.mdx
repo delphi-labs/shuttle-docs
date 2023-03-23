@@ -1,0 +1,54 @@
+---
+sidebar_position: 1
+---
+
+# ShuttleProvider
+
+The react context provider, which is used to configure the shuttle package.
+
+```tsx
+import { ShuttleProvider } from "@delphi-labs/shuttle";
+
+// ...
+
+function App() {
+  return (
+    <ShuttleProvider
+      providers={[]}
+      mobileProviders={[]}
+      persistent
+      persistentKey={"shuttle"}
+      store={customStore}
+      withLogging
+    >
+      {/* ... */}
+    </ShuttleProvider>
+  );
+}
+```
+
+## Params
+
+### providers: WalletProvider[]
+
+The array that defines which extension wallet providers are available.
+
+### mobileProviders: WalletProvider[]
+
+The array that defines which mobile wallet providers are available.
+
+### persistent?: boolean
+
+Defines whether it should persist the wallet connections or not.
+
+### persistentKey?: string
+
+The key that defines the key used in local storage.
+
+### store?: ShuttleStore
+
+The store that shuttle should use instead of it's own internal store.
+
+### withLogging?: boolean
+
+Defines whether shuttle should log warnings when initializing providers.

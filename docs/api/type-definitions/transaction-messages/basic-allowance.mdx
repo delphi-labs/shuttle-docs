@@ -1,0 +1,28 @@
+---
+sidebar_position: 4
+---
+
+# BasicAllowance
+
+The basic allowance class representation.
+
+```ts
+class BasicAllowance extends TransactionMsg<BasicAllowanceValue> {
+  static TYPE = "/cosmos.feegrant.v1beta1.BasicAllowance";
+
+  constructor({ spendLimit, expiration }: BasicAllowanceValue);
+}
+```
+
+---
+
+## BasicAllowanceValue
+
+Defines the basic allowance value.
+
+```ts
+type BasicAllowanceValue = {
+  spendLimit: { amount: string; denom: string }[];
+  expiration?: string;
+};
+```

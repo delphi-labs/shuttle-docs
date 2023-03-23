@@ -1,0 +1,30 @@
+---
+sidebar_position: 2
+---
+
+# MsgExecuteContract
+
+The execute contract message class representation.
+
+```ts
+class MsgExecuteContract extends TransactionMsg<MsgExecuteContractValue> {
+  static TYPE = "/cosmwasm.wasm.v1.MsgExecuteContract";
+
+  constructor({ sender, contract, msg, funds }: MsgExecuteContractValue);
+}
+```
+
+---
+
+## MsgExecuteContractValue
+
+Defines the execute contract message value.
+
+```ts
+type MsgExecuteContractValue = {
+  sender: string;
+  contract: string;
+  msg: any;
+  funds?: { amount: string; denom: string }[];
+};
+```

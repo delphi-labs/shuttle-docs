@@ -1,0 +1,25 @@
+---
+sidebar_position: 4
+---
+
+# Intercepting the store
+
+It is possible to pass in your own store to shuttle, it will still update it and needs to conform to the following `ShuttleStore` interface.
+
+```tsx
+import { ShuttleProvider } from "@delphi-labs/shuttle";
+
+import CustomStore from "./store";
+
+function App() {
+  return (
+    <ShuttleProvider
+      // Add the following prop if you want shuttle
+      // to use your own custom store.
+      store={CustomStore}
+    >
+      <Component {...pageProps} />
+    </ShuttleProvider>
+  );
+}
+```

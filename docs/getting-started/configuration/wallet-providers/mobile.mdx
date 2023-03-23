@@ -1,0 +1,34 @@
+---
+sidebar_position: 2
+---
+
+# Mobile Wallets
+
+The mobile wallet providers are responsible for connecting your dApp with a mobile wallet.
+
+When configuring Shuttle with your mobile providers, set it up as follows (example with MobileKeplrProvider):
+
+```tsx
+import { MobileKeplrProvider } from "@delphi-labs/shuttle";
+
+import { MAINNET, TESTNET } from "./networks";
+
+const mobileProviders = [
+  new MobileKeplrProvider({
+    networks: [MAINNET, TESTNET],
+  }),
+  // ...
+];
+```
+
+For more information on all mobile wallet provider arguments, check this [page](../../../api/type-definitions/mobile-wallet-provider).
+
+---
+
+### Supported extension providers
+
+- MobileCosmostationProvider
+- MobileKeplrProvider
+- MobileLeapCosmosProvider
+- MobileMetamaskProvider _(only supports Injective)_
+- MobileTerraStationProvider

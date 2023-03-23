@@ -1,0 +1,44 @@
+---
+sidebar_position: 6
+---
+
+# MsgTransfer
+
+The transfer message class representation.
+
+```ts
+class MsgTransfer extends TransactionMsg<MsgTransferValue> {
+  static TYPE = "/ibc.applications.transfer.v1.MsgTransfer";
+
+  constructor({
+    sender,
+    receiver,
+    sourcePort,
+    sourceChannel,
+    token,
+    timeoutHeight,
+    timeoutTimestamp,
+  }: MsgTransferValue);
+}
+```
+
+---
+
+## MsgTransferValue
+
+Defines the transfer message value.
+
+```ts
+type MsgTransferValue = {
+  sender: string;
+  receiver: string;
+  sourcePort: string;
+  sourceChannel: string;
+  token?: { amount: string; denom: string };
+  timeoutHeight?: {
+    revisionNumber: string;
+    revisionHeight: string;
+  };
+  timeoutTimestamp: string;
+};
+```

@@ -1,0 +1,26 @@
+---
+sidebar_position: 5
+---
+
+# Account
+
+Defines `Account` object:
+
+```ts
+type Account = {
+  address: string;
+  algo: Algo | null;
+  pubkey: string | null;
+  isLedger: boolean;
+};
+```
+
+---
+
+## Algo
+
+Defines `Algo` object:
+
+```ts
+type Algo = "secp256k1" | "ed25519" | "sr25519";
+```

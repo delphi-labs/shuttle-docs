@@ -1,0 +1,58 @@
+---
+sidebar_position: 1
+---
+
+# Connect to extension wallet
+
+In order to connect to a wallet, we need to call `connect` from the `useShuttle` hook as follows:
+
+```tsx
+import { useShuttle } from "@delphi-labs/shuttle";
+
+function Header() {
+  const { connect } = useShuttle();
+
+  const onConnect = () => {
+    connect({ providerId: "keplr", chainId: "mars-1" });
+  };
+
+  return (
+    <>
+      <button onClick={onConnect}>Connect</button>
+    </>
+  );
+}
+```
+
+The previous implementation is very naive and uses hardcoded values in the connect method, let's dynamically render all possible and available providers.
+
+```tsx
+import { useShuttle } from "@delphi-labs/shuttle";
+
+function Header() {
+  const { connect, providers } = useShuttle();
+
+  return (
+    <>
+      {providers.map((provider) => {
+        return (
+          <button
+            key={provider.id}
+            onClick={() =>
+              connect({
+                providerId: provider.id,
+                chainId: "mars-1",
+              })
+            }
+            disabled={!provider.initialized}
+          >
+            {provider.name}
+          </button>
+        );
+      })}
+    </>
+  );
+}
+```
+
+We are still hardcoding the `chainId` we want to connect to, if your dApp is multi-chain we leave the approach you want to use to you. Just as a hint, the `provider` object has all the enabled networks if you access `provider.networks` you could iterate through them to display all possible provider and network combinations.

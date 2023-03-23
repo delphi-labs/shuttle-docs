@@ -1,0 +1,55 @@
+---
+sidebar_position: 4
+---
+
+# Disconnect from wallet
+
+In order to disconnect from a specific wallet we need to call the `disconnectWallet` method.
+
+```tsx
+import { useShuttle } from "@delphi-labs/shuttle";
+
+function Header() {
+  const currentNetworkId = useNetworkStore((state) => state.currentNetworkId);
+  const { /* ... */, getWallets, disconnectWallet } = useShuttle();
+  const wallet = getWallets({ chainId: currentNetworkId })[0];
+
+  return (
+    <>
+      {wallet && (
+        <>
+          <p>Address: {wallet.account.address}</p>
+          <button onClick={() => disconnectWallet(wallet)}>Disconnect</button>
+        </>
+      )}
+
+      {!wallet && (
+        /* ... */
+      )}
+    </>
+  );
+}
+```
+
+We could also use a more generic method, `disconnect` which if your dApp isn't multi chain makes it a lot simpler, it also allows you to pass in a filter object in case you want to disconnect all `chainId: "mars-1"` or `providerId: "keplr"` wallets.
+
+```tsx
+import { useShuttle } from "@delphi-labs/shuttle";
+
+function Header() {
+  const { /* ... */, recentWallet, disconnect } = useShuttle();
+
+  return (
+    <>
+      {recentWallet && (
+        <>
+          <p>Address: {recentWallet.account.address}</p>
+          <button onClick={() => disconnect()}>Disconnect</button>
+        </>
+      )}
+
+      {/* ... */}
+    </>
+  );
+}
+```

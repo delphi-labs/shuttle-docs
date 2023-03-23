@@ -1,0 +1,115 @@
+---
+sidebar_position: 2
+---
+
+# useShuttle
+
+The react hook, that is used to access shuttle's context provider state.
+
+```tsx
+import { useShuttle } from "@delphi-labs/shuttle";
+
+function Header() {
+  const {
+    /* ... */
+  } = useShuttle();
+
+  return <>{/* ... */}</>;
+}
+```
+
+The context state that is returned by `useShuttle` has the following structure.
+
+```ts
+type ShuttleContextType = {
+  providers: WalletProvider[];
+  mobileProviders: MobileWalletProvider[];
+  mobileConnect: (options: {
+    mobileProviderId: string;
+    chainId: string;
+    callback?: (walletConnection: WalletConnection) => void;
+  }) => Promise<MobileConnectResponse>;
+  connect: (options: {
+    providerId: string;
+    chainId: string;
+  }) => Promise<WalletConnection>;
+  wallets: WalletConnection[];
+  getWallets: (filters?: {
+    providerId?: string;
+    chainId?: string;
+  }) => WalletConnection[];
+  recentWallet: WalletConnection | null;
+  disconnect: (filters?: { providerId?: string; chainId?: string }) => void;
+  disconnectWallet: (wallet: WalletConnection) => void;
+  simulate: (options: {
+    messages: TransactionMsg[];
+    wallet?: WalletConnection | null;
+  }) => Promise<SimulateResult>;
+  broadcast: (options: {
+    messages: TransactionMsg[];
+    feeAmount?: string | null;
+    gasLimit?: string | null;
+    memo?: string | null;
+    wallet?: WalletConnection | null;
+    mobile?: boolean;
+  }) => Promise<BroadcastResult>;
+  sign: (options: {
+    messages: TransactionMsg[];
+    feeAmount?: string | null;
+    gasLimit?: string | null;
+    memo?: string | null;
+    wallet?: WalletConnection | null;
+    mobile?: boolean;
+  }) => Promise<SigningResult>;
+};
+```
+
+## Properties
+
+### providers: WalletProvider[]
+
+The array that defines which extension wallet providers are available.
+
+### mobileProviders: WalletProvider[]
+
+The array that defines which mobile wallet providers are available.
+
+### async mobileConnect(options: \{ mobileProviderId: string; chainId: string; callback?: (walletConnection: WalletConnection) => void; \}): MobileConnectResponse
+
+The method that allows to connect to a mobile wallet provider, by specifying the provider and chain, it returns the the urls that can be used either to redirect to the mobile app or to render the qr code. Once a connection has been estabilished the callback will be called with the respective wallet connection.
+
+### async connect(options: \{ mobileProviderId: string; chainId: string; callback?: (walletConnection: WalletConnection) => void; \}): MobileConnectResponse
+
+The method that allows to connect to an extension wallet provider, by specifying the provider and chain, it returns the respective wallet connection.
+
+### wallets: WalletConnection[]
+
+The array that contains all connected wallets.
+
+### getWallets(filters?: \{ providerId?: string; chainId?: string; \}): WalletConnection[]
+
+The helper function that returns all wallets that match the specified filters.
+
+### recentWallet: WalletConnection | null
+
+The most recent connected wallet.
+
+### disconnect(filters?: \{ providerId?: string; chainId?: string \}): void
+
+The method that allows to disconnect from wallets that match the specified filters.
+
+### disconnectWallet(wallet: WalletConnection): void
+
+The method that allows to disconnect from a specific wallet.
+
+### async simulate(options: \{ messages: TransactionMsg[]; wallet?: WalletConnection | null; \}): SimulateResult
+
+The method that allows to simulate a transaction, a specific wallet can be passed as an option if one is not specified the most recent connected wallet will be used.
+
+### async broadcast(options: \{ messages: TransactionMsg[]; feeAmount?: string | null; gasLimit?: string | null; memo?: string | null; wallet?: WalletConnection | null; mobile?: boolean; \}): BroadcastResult
+
+The method that allows to broadcast a transaction, it is possible to specify the wallet to be used, the gas limit and fee amount, as well as the memo. If the wallet connection is a mobile provider, the mobile option should be set to true or false depending on which environment the dApp is currently being executed on. When a wallet is not specified the most recent connected wallet will be used. When the fee amount or gas limit is not specified, it will be estimated automatically by the wallet provider.
+
+### async sign(options: \{ messages: TransactionMsg[]; feeAmount?: string | null; gasLimit?: string | null; memo?: string | null; wallet?: WalletConnection | null; mobile?: boolean; \}): SigningResult
+
+The method that allows to sign a transaction, it is possible to specify the wallet to be used, the gas limit and fee amount, as well as the memo. If the wallet connection is a mobile provider, the mobile option should be set to true or false depending on which environment the dApp is currently being executed on. When a wallet is not specified the most recent connected wallet will be used. When the fee amount or gas limit is not specified, it will be estimated automatically by the wallet provider.

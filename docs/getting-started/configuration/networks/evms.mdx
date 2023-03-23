@@ -1,0 +1,47 @@
+---
+sidebar_position: 2
+---
+
+# EVM Chains
+
+Shuttle currently only supports Injective, when setting your providers you can configure which networks are enabled for that specific provider by sending in a network object like the one bellow (example with Injective).
+
+```ts
+import {
+  fromInjectiveEthereumChainToCosmosChain,
+  Network,
+} from "@delphi-labs/shuttle";
+import { bech32 } from "bech32";
+import { Address } from "ethereumjs-util";
+
+const INJECTIVE_MAINNET: Network = {
+  name: "Injective Mainnet",
+  chainId: "injective-1",
+  chainPrefix: "inj",
+  rpc: "https://k8s.mainnet.tm.injective.network",
+  rest: "https://k8s.mainnet.lcd.injective.network",
+  defaultCurrency: {
+    coinDenom: "INJ",
+    coinMinimalDenom: "inj",
+    coinDecimals: 18,
+    coinGeckoId: "injective",
+  },
+  gasPrice: "0.0005inj",
+  evm: {
+    deriveCosmosAddress: (ethAddress: string): string => {
+      const addressBuffer = Address.fromString(
+        ethAddress.toString()
+      ).toBuffer();
+
+      return bech32.encode("inj", bech32.toWords(addressBuffer));
+    },
+    fromEthChainToCosmosChain: (chainId: number): string => {
+      return fromInjectiveEthereumChainToCosmosChain(chainId);
+    },
+  },
+};
+```
+
+As you can notice, evm chains require an extra configuration object `evm`, this is so that Shuttle can connect to Metamask and similar wallets.
+
+For more information on all network configuration options, check this [page](../../api/type-definitions/network).

@@ -1,0 +1,58 @@
+---
+sidebar_position: 1
+---
+
+# TransactionMsg
+
+Defines the abstract transaction message.
+
+```ts
+class TransactionMsg<T = any> {
+  static TYPE: string;
+
+  constructor(public typeUrl: string, public value: T) {}
+
+  toCosmosMsg(): CosmosMsg;
+
+  toAminoMsg(): AminoMsg<T>;
+
+  toProtoMsg(): ProtoMsg;
+
+  toTerraExtensionMsg(): string;
+}
+```
+
+---
+
+## CosmosMsg
+
+Defines the cosmos message type.
+
+```ts
+type CosmosMsg = {
+  typeUrl: string;
+  value: any;
+};
+```
+
+## AminoMsg
+
+Defines the amino message type.
+
+```ts
+type AminoMsg<T = any> = {
+  type: string;
+  value: T;
+};
+```
+
+## ProtoMsg
+
+Defines the amino message type.
+
+```ts
+type ProtoMsg = {
+  typeUrl: string;
+  value: Uint8Array;
+};
+```

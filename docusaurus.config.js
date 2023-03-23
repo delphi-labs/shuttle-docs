@@ -92,33 +92,9 @@ const config = {
         beforeDefaultRemarkPlugins: [
           [remarkCodeHike, { theme }],
         ],
-        id: 'configuration',
-        path: 'docs/configuration',
-        routeBasePath: 'docs/configuration',
-        sidebarPath: require.resolve('./sidebars.js'),
-      }, 
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        beforeDefaultRemarkPlugins: [
-          [remarkCodeHike, { theme }],
-        ],
-        id: 'faq',
-        path: 'docs/faq',
-        routeBasePath: 'docs/faq',
-        sidebarPath: require.resolve('./sidebars.js'),
-      }, 
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        beforeDefaultRemarkPlugins: [
-          [remarkCodeHike, { theme }],
-        ],
-        id: 'api-docs',
-        path: 'docs/api-docs',
-        routeBasePath: 'docs/api-docs',
+        id: 'api',
+        path: 'docs/api',
+        routeBasePath: 'docs/api',
         sidebarPath: require.resolve('./sidebars.js'),
       }, 
     ],
@@ -145,29 +121,23 @@ const config = {
             activeBaseRegex: `/getting-started/`,
           },
           {
-            to: '/docs/configuration/category/wallet-providers',    // ./docs-api/intro.md
-            label: 'Configuration',
+            to: '/docs/api/category/interfaces',    // ./docs-api/intro.md
+            label: 'API',
             position: 'left',
-            activeBaseRegex: `/configuration/`,
-          },
-          {
-            to: '/docs/faq/category/react-package',    // ./docs-api/intro.md
-            label: 'FAQ',
-            position: 'left',
-            activeBaseRegex: `/faq/`,
-          },
-          {
-            to: '/docs/api-docs/category/interfaces',    // ./docs-api/intro.md
-            label: 'API Docs',
-            position: 'left',
-            activeBaseRegex: `/api-docs/`,
+            activeBaseRegex: `/api/`,
           },
 
           // {to: '/blog', label: 'Blog', position: 'left'},
 
           {
-            href: 'https://github.com/delphi-labs/shuttle-docs',
+            href: 'https://github.com/delphi-labs/shuttle',
             label: 'GitHub',
+            position: 'right',
+          },
+
+          {
+            href: 'https://www.npmjs.com/package/@delphi-labs/shuttle',
+            label: 'npm',
             position: 'right',
           },
         ],
@@ -195,8 +165,12 @@ const config = {
                 to: '/docs/getting-started/installation',
               },
               {
-                label: 'FAQ',
-                to: '/docs/faq/category/react-package',
+                label: 'How it works',
+                to: '/docs/getting-started/category/how-it-works',
+              },
+              {
+                label: 'API',
+                to: '/docs/api/category/interfaces',
               },
             ],
           },
@@ -205,7 +179,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/delphi-labs/shuttle-docs',
+                href: 'https://github.com/delphi-labs/shuttle',
               },
               {
                 label: 'npm',
@@ -219,6 +193,10 @@ const config = {
               {
                 label: 'Delphi Labs Twitter',
                 href: 'https://twitter.com/delphi_labs',
+              },
+              {
+                label: 'Contribute to Docs',
+                href: 'https://github.com/delphi-labs/shuttle-docs',
               },
             ],
           },

@@ -1,0 +1,35 @@
+---
+sidebar_position: 1
+---
+
+# NextJS
+
+To setup you must wrap your NextJS app with the `ShuttleProvider` like so:
+
+```tsx
+import { ShuttleProvider } from "@delphi-labs/shuttle";
+
+const providers = [
+  // ...
+];
+
+const mobileProviders = [
+  // ...
+];
+
+function App() {
+  return (
+    <ShuttleProvider
+      providers={providers}
+      mobileProviders={mobileProviders}
+      // Add the following prop if you want wallet connections
+      // to be persisted to local storage.
+      persistent
+    >
+      <Component {...pageProps} />
+    </ShuttleProvider>
+  );
+}
+```
+
+Notice that the providers are defined outside the component to make sure those arrays are constant, this is a very important rule to follow.

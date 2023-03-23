@@ -27,7 +27,7 @@ const FeatureList = [
     
     description: (
       <>
-        Support for VueJS and Svelte pending. 
+        Currently Shuttle is built on top of React, but we plan to support other frameworks in the future.
       </>
     ),
   },

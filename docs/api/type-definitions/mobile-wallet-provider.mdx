@@ -1,0 +1,54 @@
+---
+sidebar_position: 2
+---
+
+# MobileWalletProvider
+
+Defines the abstract interface to integrate a particular Mobile wallet.
+
+```ts
+interface MobileWalletProvider {
+  id: string;
+  name: string;
+  networks: Map<string, Network>;
+  initializing: boolean;
+  initialized: boolean;
+  new({
+    id?: string | undefined;
+    name?: string | undefined;
+    networks: Network[];
+  }): MobileWalletProvider;
+  init(): Promise<void>;
+  setOnUpdateCallback(callback: () => void): void;
+  connect(options: {
+    chainId: string;
+    callback?: (walletConnection: WalletConnection) => void;
+  }): Promise<MobileConnectResponse>;
+  getWalletConnection({
+    chainId,
+  }: {
+    chainId: string;
+  }): Promise<WalletConnection>;
+  disconnect(options: { wallet: WalletConnection }): Promise<void>;
+  simulate(options: {
+    messages: TransactionMsg[];
+    wallet: WalletConnection;
+  }): Promise<SimulateResult>;
+  broadcast(options: {
+    messages: TransactionMsg[];
+    wallet: WalletConnection;
+    feeAmount?: string | null;
+    gasLimit?: string | null;
+    memo?: string | null;
+    mobile?: boolean;
+  }): Promise<BroadcastResult>;
+  sign(options: {
+    messages: TransactionMsg[];
+    wallet: WalletConnection;
+    feeAmount?: string | null;
+    gasLimit?: string | null;
+    memo?: string | null;
+    mobile?: boolean;
+  }): Promise<SigningResult>;
+}
+```
